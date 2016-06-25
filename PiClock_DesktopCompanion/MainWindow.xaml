@@ -1,0 +1,28 @@
+﻿<Window x:Class="PiClock_DesktopCompanion.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PiClock_DesktopCompanion.ViewModels"
+        mc:Ignorable="d"
+        Title="PiClock Desktop Companion" Height="350" Width="260">
+    <Window.DataContext>
+        <local:PinLoginViewModel />
+    </Window.DataContext>
+    <Grid>
+        <Button x:Name="button_1" Content="1" HorizontalAlignment="Left" Margin="48,141,0,0" VerticalAlignment="Top" Width="48" Height="29" CommandParameter="1" Command="{Binding UpdatePinLogin, Mode=OneWay}"/>
+        <Button x:Name="button_2" Content="2" HorizontalAlignment="Left" Margin="101,141,0,0" VerticalAlignment="Top" Width="48" Height="29" CommandParameter="2" Command="{Binding UpdatePinLogin, Mode=OneWay}"/>
+        <Button x:Name="button_3" Content="3" HorizontalAlignment="Left" Margin="154,141,0,0" VerticalAlignment="Top" Width="48" Height="29" CommandParameter="3" Command="{Binding UpdatePinLogin, Mode=OneWay}"/>
+        <Button x:Name="button_4" Content="4" HorizontalAlignment="Left" Margin="48,175,0,0" VerticalAlignment="Top" Width="48" Height="29" CommandParameter="4" Command="{Binding UpdatePinLogin, Mode=OneWay}"/>
+        <Button x:Name="button_5" Content="5" HorizontalAlignment="Left" Margin="101,175,0,0" VerticalAlignment="Top" Width="48" Height="29" CommandParameter="5" Command="{Binding UpdatePinLogin, Mode=OneWay}"/>
+        <Button x:Name="button_6" Content="6" HorizontalAlignment="Left" Margin="154,175,0,0" VerticalAlignment="Top" Width="48" Height="29" CommandParameter="6" Command="{Binding UpdatePinLogin, Mode=OneWay}"/>
+        <Button x:Name="button_7" Content="7" HorizontalAlignment="Left" Margin="48,209,0,0" VerticalAlignment="Top" Width="48" Height="29" CommandParameter="7" Command="{Binding UpdatePinLogin, Mode=OneWay}"/>
+        <Button x:Name="button_8" Content="8" HorizontalAlignment="Left" Margin="101,209,0,0" VerticalAlignment="Top" Width="48" Height="29" CommandParameter="8" Command="{Binding UpdatePinLogin, Mode=OneWay}"/>
+        <Button x:Name="button_9" Content="9" HorizontalAlignment="Left" Margin="154,209,0,0" VerticalAlignment="Top" Width="48" Height="29" CommandParameter="9" Command="{Binding UpdatePinLogin, Mode=OneWay}"/>
+        <Button x:Name="button_0" Content="0" HorizontalAlignment="Left" Margin="101,243,0,0" VerticalAlignment="Top" Width="48" Height="29" CommandParameter="0" Command="{Binding UpdatePinLogin, Mode=OneWay}"/>
+        <TextBlock x:Name="textBlock_Heading" HorizontalAlignment="Left" Margin="48,27,0,0" TextWrapping="Wrap" Text="Please Login" VerticalAlignment="Top" Height="22" Width="154" TextAlignment="Center"/>
+        <TextBlock x:Name="textBlock_Error" HorizontalAlignment="Left" Margin="48,54,0,0" TextWrapping="Wrap" Text="{Binding PinNumber}" VerticalAlignment="Top" Height="34" Width="154" TextAlignment="Center"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="48,93,0,0" TextWrapping="Wrap" Text="{Binding PinError}" VerticalAlignment="Top" Height="34" Width="154" TextAlignment="Center"/>
+
+    </Grid>
+</Window>

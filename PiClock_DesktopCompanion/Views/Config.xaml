@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PiClock_DesktopCompanion.ViewModels"
         xmlns:p="clr-namespace:PiClock_DesktopCompanion.Properties"
+        xmlns:b="clr-namespace:PiClock_DesktopCompanion.Helpers"
         mc:Ignorable="d"
         Title="Configuration" Height="364.908" Width="300">
     <Window.DataContext>
@@ -22,9 +23,8 @@
         <Label x:Name="label_Copy2" Content="API Username" HorizontalAlignment="Left" Margin="20,163,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="passwordBox_ApiPassword" HorizontalAlignment="Left" Height="23" Margin="20,243,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="251" Text="{Binding ApiPassword, Mode=TwoWay}" />
         <Label x:Name="label_Copy3" Content="API Password" HorizontalAlignment="Left" Margin="20,217,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="button_SaveChanges" Content="Save Settings" HorizontalAlignment="Left" Margin="201,304,0,0" VerticalAlignment="Top" Width="81" Command="{Binding UpdateSettings, Mode=OneWay}"/>
-        <Button x:Name="button_Cancel" Content="Cancel" HorizontalAlignment="Left" Margin="115,304,0,0" VerticalAlignment="Top" Width="81" />
+        <Button x:Name="button_SaveChanges" Content="Save Settings" HorizontalAlignment="Left" Margin="201,304,0,0" VerticalAlignment="Top" Width="81" Command="{Binding UpdateSettings, Mode=OneWay}" b:CloseOnClickBehaviour.IsEnabled="True"/>
+        <Button x:Name="button_Cancel" Content="Cancel" HorizontalAlignment="Left" Margin="115,304,0,0" VerticalAlignment="Top" Width="81" IsCancel="True"/>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="20,271,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="251"/>
-
     </Grid>
 </Window>

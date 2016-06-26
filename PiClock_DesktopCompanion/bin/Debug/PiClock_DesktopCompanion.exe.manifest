@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PiClock_DesktopCompanion.exe" size="25056">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PiClock_DesktopCompanion.exe" size="27104">
       <assemblyIdentity name="PiClock_DesktopCompanion" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>c7TeUc3KRp+/A+c1N/hYLeT1bfcjl0YqOlZOlcue47I=</dsig:DigestValue>
+        <dsig:DigestValue>PC32Ve6MZXIN4stkIBBToyZ71ei7nkqC/B9mE7/d9rw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

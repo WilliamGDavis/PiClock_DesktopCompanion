@@ -1,32 +1,19 @@
-﻿using PiClock_DesktopCompanion.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.ComponentModel;
 using PiClock_DesktopCompanion.Properties;
 using System.Windows.Input;
 
 namespace PiClock_DesktopCompanion.ViewModels
 {
-    class ConfigViewModel
+    class ConfigViewModel : INotifyPropertyChanged
     {
-        #region Constructors
-        public ConfigViewModel()
-        { }
-        #endregion
-
         #region Members
-        //Configuration _configuration;
         string _apiServerAddress = Settings.Default.ApiServerAddress;
         string _apiServerPort = Settings.Default.ApiServerPort;
         string _apiDirectory = Settings.Default.ApiDirectory;
         string _apiUsername = Settings.Default.ApiUsername;
         string _apiPassword = Settings.Default.ApiPassword;
         string _uriPrefix = Settings.Default.UriPrefix;
-        string _useSsl = Settings.Default.UseSsl;
+        string _useSsl = "s" /*Settings.Default.UseSsl*/; //TODO: Fix this
         #endregion
 
         #region Properties
@@ -37,6 +24,7 @@ namespace PiClock_DesktopCompanion.ViewModels
             {
                 if (_apiServerAddress != value)
                     _apiServerAddress = value;
+                RaisePropertyChanged("ApiServerAddress");
             }
         }
         public string ApiServerPort
@@ -46,6 +34,8 @@ namespace PiClock_DesktopCompanion.ViewModels
             {
                 if (_apiServerPort != value)
                     _apiServerPort = value;
+                RaisePropertyChanged("ApiServerPort");
+
             }
         }
         public string ApiDirectory
@@ -55,6 +45,7 @@ namespace PiClock_DesktopCompanion.ViewModels
             {
                 if (_apiDirectory != value)
                     _apiDirectory = value;
+                RaisePropertyChanged("ApiDirectory");
             }
         }
         public string ApiUsername
@@ -77,11 +68,10 @@ namespace PiClock_DesktopCompanion.ViewModels
         }
         public string UriPrefix
         {
-            get { return _uriPrefix; }
-            set
+            get
             {
-                if (_uriPrefix != value)
-                    _uriPrefix = value;
+                return (_uriPrefix != "" && _uriPrefix == FormatUriPrefix()) ?
+                    _uriPrefix : FormatUriPrefix();
             }
         }
         public string UseSsl
@@ -91,12 +81,29 @@ namespace PiClock_DesktopCompanion.ViewModels
             {
                 if (_useSsl != value)
                     _useSsl = value;
+                RaisePropertyChanged("UriPrefix");
             }
         }
         #endregion
 
+        #region INotifyPropertyChanged
+        #region INPC Members
+        public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
+
+        #region INPC Methods
+        private void RaisePropertyChanged(string propertyName)
+        {
+            //Use a handler to prevent threading issues
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+                handler(this, new PropertyChangedEventArgs(propertyName));
+        }
+        #endregion
+        #endregion
+
         #region Commands
-        #region UpdateSettings
+        #region Command - UpdateSettings
         RelayCommand _updateSettingsCommand;
         public ICommand UpdateSettings
         {
@@ -110,13 +117,13 @@ namespace PiClock_DesktopCompanion.ViewModels
 
         void UpdateSettingsExecute()
         {
-            Settings.Default.ApiServerAddress = _apiServerAddress;
-            Settings.Default.ApiServerPort = _apiServerPort;
-            Settings.Default.ApiDirectory = _apiDirectory;
-            Settings.Default.ApiUsername = _apiUsername;
-            Settings.Default.ApiPassword = _apiPassword;
-            Settings.Default.UriPrefix = _uriPrefix;
-            Settings.Default.UseSsl = _useSsl;
+            Settings.Default.ApiServerAddress = ApiServerAddress;
+            Settings.Default.ApiServerPort = ApiServerPort;
+            Settings.Default.ApiDirectory = ApiDirectory;
+            Settings.Default.ApiUsername = ApiUsername;
+            Settings.Default.ApiPassword = ApiPassword;
+            Settings.Default.UriPrefix = UriPrefix;
+            Settings.Default.UseSsl = UseSsl;
             Settings.Default.Save();
             Settings.Default.Reload();
         }
@@ -124,6 +131,17 @@ namespace PiClock_DesktopCompanion.ViewModels
         bool CanUpdateSettingsExecute()
         { return true; }
         #endregion
+        #endregion
+
+        #region Methods
+        string FormatUriPrefix()
+        {
+            return string.Format("http{0}://{1}:{2}/{3}",
+                                    UseSsl,
+                                    ApiServerAddress,
+                                    ApiServerPort,
+                                    ApiDirectory);
+        }
         #endregion
     }
 }

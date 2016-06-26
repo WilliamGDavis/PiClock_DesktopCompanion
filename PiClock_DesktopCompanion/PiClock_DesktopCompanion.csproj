@@ -91,6 +91,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>AppSettings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\CloseOnClickBehavior.cs" />
     <Compile Include="Helpers\RelayCommand.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Settings.cs" />

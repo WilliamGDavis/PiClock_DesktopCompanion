@@ -1,5 +1,6 @@
 ﻿//using PiClock_DesktopCompanion.Helpers;
 using PiClock_DesktopCompanion.Models;
+using PiClock_DesktopCompanion.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -86,6 +87,9 @@ namespace PiClock_DesktopCompanion.ViewModels
                 {
                     PinError = "Logged In Successfully!";
                     RaisePropertyChanged("PinError");
+                    var congifuration = new Config();
+                    congifuration.ShowDialog();
+                    
                 }
                 else
                 {

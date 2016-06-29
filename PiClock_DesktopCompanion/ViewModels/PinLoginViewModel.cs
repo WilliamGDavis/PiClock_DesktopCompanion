@@ -1,4 +1,4 @@
-﻿//using PiClock_DesktopCompanion.Helpers;
+﻿using PiClock_DesktopCompanion.Helpers;
 using PiClock_DesktopCompanion.Models;
 using PiClock_DesktopCompanion.Views;
 using System;
@@ -7,57 +7,65 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace PiClock_DesktopCompanion.ViewModels
 {
-    class PinLoginViewModel : INotifyPropertyChanged
+    class PinLoginViewModel : BaseViewModel
     {
-        #region Constructors
-        public PinLoginViewModel()
-        { _pin = new PinLogin(); }
+        #region Members
+        PinLoginModel _pinLoginModel;
+        string _pinError;
         #endregion
 
-        #region Members
-        PinLogin _pin;
+        #region Constructors
+        public PinLoginViewModel() { }
         #endregion
 
         #region Properties
-        public PinLogin Pin
+        protected PinLoginModel PinModel
         {
-            get { return _pin; }
-            set { _pin = value; }
+            get
+            {
+                if (_pinLoginModel == null)
+                    _pinLoginModel = new PinLoginModel();
+                return _pinLoginModel;
+            }
+            //set
+            //{
+            //    if (_pinLoginModel == null)
+            //        _pinLoginModel = new PinLoginModel();
+            //}
         }
-        public string PinNumber
+
+        public string Pin
         {
-            get { return Pin.Pin; }
+            get { return PinModel.Pin; }
             set
             {
-                if (Pin.Pin != value)
+                if (PinModel.Pin != value)
                 {
-                    Pin.Pin = value;
-                    RaisePropertyChanged("PinNumber");
+                    PinModel.Pin = value;
+                    RaisePropertyChanged("Pin");
                 }
             }
         }
-        public string PinError { get; set; }
-        #endregion
-
-        #region INPC Members
-        public event PropertyChangedEventHandler PropertyChanged;
-        #endregion
-
-        #region INCP Methods
-        private void RaisePropertyChanged(string propertyName)
+        public string PinError
         {
-            //Use a handler to prevent threading issues
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-                handler(this, new PropertyChangedEventArgs(propertyName));
+            get { return _pinError; }
+            set
+            {
+                if (_pinError != value)
+                    _pinError = value;
+                RaisePropertyChanged("PinError");
+            }
         }
         #endregion
 
+
         #region Commands
+        #region Commands - UpdatePinLogin
         RelayCommand _updatePinLoginCommand;
         public ICommand UpdatePinLogin
         {
@@ -72,33 +80,57 @@ namespace PiClock_DesktopCompanion.ViewModels
 
         void UpdatePinLoginExecute(object param)
         {
-            PinNumber += param;
+            Pin += param;
             CheckPin();
         }
 
         bool CanUpdatePinLoginExecute()
         { return true; }
+        #endregion - UpdatePinLogin
+        #region Commands - UpdateControl
+        RelayCommand _updateControl;
+        public ICommand UpdateControl
+        {
+            get
+            {
+                if (_updateControl == null)
+                    _updateControl = new RelayCommand(param => UpdateControlExecute(), param => CanUpdateControlExecute());
 
+                return _updateControl;
+            }
+        }
+
+        void UpdateControlExecute()
+        {
+            PageSwitcher.Instance.CurrentView = PageSwitcher.Instance.ConfigurationView;
+        }
+
+        bool CanUpdateControlExecute()
+        {
+            return true;
+        }
+        #endregion - UpdateControl
+        #endregion
+
+        #region Methods
         void CheckPin()
         {
-            if (PinNumber.Length == 4)
+            if (Pin.Length == 4)
             {
-                if (PinNumber == "1111")
+                if (Pin == "1111")
                 {
                     PinError = "Logged In Successfully!";
                     RaisePropertyChanged("PinError");
-                    var congifuration = new Config();
-                    congifuration.ShowDialog();
-                    
+
                 }
                 else
                 {
                     PinError = "Incorrect PIN";
                     RaisePropertyChanged("PinError");
                 }
-                PinNumber = null;
+                Pin = null;
             }
         }
-        #endregion
+        #endregion - Methods
     }
 }

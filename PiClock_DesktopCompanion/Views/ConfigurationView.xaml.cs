@@ -1,6 +1,4 @@
-﻿using PiClock_DesktopCompanion.ViewModels;
-using PiClock_DesktopCompanion.Views;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PiClock_DesktopCompanion
+namespace PiClock_DesktopCompanion.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ConfigurationView.xaml
     /// </summary>
-    public partial class MainWindow : Window
-    {              
-        public MainWindow()
+    public partial class ConfigurationView : UserControl
+    {
+        public ConfigurationView()
         {
             InitializeComponent();
         }

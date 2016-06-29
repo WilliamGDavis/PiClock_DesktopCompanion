@@ -1,10 +1,11 @@
 ﻿using System.ComponentModel;
 using PiClock_DesktopCompanion.Properties;
 using System.Windows.Input;
+using PiClock_DesktopCompanion.Helpers;
 
 namespace PiClock_DesktopCompanion.ViewModels
 {
-    class ConfigViewModel : INotifyPropertyChanged
+    class ConfigurationViewModel : INotifyPropertyChanged
     {
         #region Members
         string _apiServerAddress = Settings.Default.ApiServerAddress;
@@ -13,7 +14,7 @@ namespace PiClock_DesktopCompanion.ViewModels
         string _apiUsername = Settings.Default.ApiUsername;
         string _apiPassword = Settings.Default.ApiPassword;
         string _uriPrefix = Settings.Default.UriPrefix;
-        string _useSsl = "s" /*Settings.Default.UseSsl*/; //TODO: Fix this
+        string _useSsl = Settings.Default.UseSsl;
         #endregion
 
         #region Properties
@@ -55,6 +56,7 @@ namespace PiClock_DesktopCompanion.ViewModels
             {
                 if (_apiUsername != value)
                     _apiUsername = value;
+                RaisePropertyChanged("ApiUsername");
             }
         }
         public string ApiPassword
@@ -64,6 +66,7 @@ namespace PiClock_DesktopCompanion.ViewModels
             {
                 if (_apiPassword != value)
                     _apiPassword = value;
+                RaisePropertyChanged("ApiPassword");
             }
         }
         public string UriPrefix
@@ -81,7 +84,7 @@ namespace PiClock_DesktopCompanion.ViewModels
             {
                 if (_useSsl != value)
                     _useSsl = value;
-                RaisePropertyChanged("UriPrefix");
+                RaisePropertyChanged("UseSsl");
             }
         }
         #endregion
@@ -126,11 +129,35 @@ namespace PiClock_DesktopCompanion.ViewModels
             Settings.Default.UseSsl = UseSsl;
             Settings.Default.Save();
             Settings.Default.Reload();
+            PageSwitcher.Instance.CurrentView = PageSwitcher.Instance.PinLoginView;
         }
 
         bool CanUpdateSettingsExecute()
         { return true; }
         #endregion
+        #region UpdateControl
+        RelayCommand _updateControl;
+        public ICommand UpdateControl
+        {
+            get
+            {
+                if (_updateControl == null)
+                    _updateControl = new RelayCommand(param => UpdateControlExecute(), param => CanUpdateControlExecute());
+
+                return _updateControl;
+            }
+        }
+
+        void UpdateControlExecute()
+        {
+            PageSwitcher.Instance.CurrentView = PageSwitcher.Instance.PinLoginView;
+        }
+
+        bool CanUpdateControlExecute()
+        {
+            return true;
+        }
+        #endregion - UpdateControl
         #endregion
 
         #region Methods
@@ -141,6 +168,16 @@ namespace PiClock_DesktopCompanion.ViewModels
                                     ApiServerAddress,
                                     ApiServerPort,
                                     ApiDirectory);
+        }
+        public bool CheckboxIsChecked
+        {
+            get
+            { return (UseSsl == "s") ? true : false; }
+            set
+            {
+                UseSsl = (value == true) ? "s" : "";
+                RaisePropertyChanged("CheckboxIsChecked");
+            }
         }
         #endregion
     }

@@ -10,16 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace PiClock_DesktopCompanion.Views
 {
     /// <summary>
-    /// Interaction logic for Configuration.xaml
+    /// Interaction logic for PinLoginView.xaml
     /// </summary>
-    public partial class Config : Window
+    public partial class PinLoginView : UserControl
     {
-        public Config()
-        { InitializeComponent(); }
+        public PinLoginView()
+        {
+            InitializeComponent();
+        }
     }
 }

@@ -17,13 +17,11 @@ C:\Users\Owner\Documents\GitHub\PiClock_DesktopCompanion\PiClock_DesktopCompanio
 C:\Users\Owner\Documents\GitHub\PiClock_DesktopCompanion\PiClock_DesktopCompanion\bin\Debug\PiClock_DesktopCompanion.exe
 C:\Users\Owner\Documents\GitHub\PiClock_DesktopCompanion\PiClock_DesktopCompanion\bin\Debug\PiClock_DesktopCompanion.pdb
 C:\Users\Owner\Documents\GitHub\PiClock_DesktopCompanion\PiClock_DesktopCompanion\obj\Debug\MainWindow.g.cs
-C:\Users\Owner\Documents\GitHub\PiClock_DesktopCompanion\PiClock_DesktopCompanion\obj\Debug\Views\Config.g.cs
 C:\Users\Owner\Documents\GitHub\PiClock_DesktopCompanion\PiClock_DesktopCompanion\obj\Debug\App.g.cs
 C:\Users\Owner\Documents\GitHub\PiClock_DesktopCompanion\PiClock_DesktopCompanion\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\Owner\Documents\GitHub\PiClock_DesktopCompanion\PiClock_DesktopCompanion\obj\Debug\PiClock_DesktopCompanion_MarkupCompile.cache
 C:\Users\Owner\Documents\GitHub\PiClock_DesktopCompanion\PiClock_DesktopCompanion\obj\Debug\PiClock_DesktopCompanion_MarkupCompile.lref
 C:\Users\Owner\Documents\GitHub\PiClock_DesktopCompanion\PiClock_DesktopCompanion\obj\Debug\MainWindow.baml
-C:\Users\Owner\Documents\GitHub\PiClock_DesktopCompanion\PiClock_DesktopCompanion\obj\Debug\Views\Config.baml
 C:\Users\Owner\Documents\GitHub\PiClock_DesktopCompanion\PiClock_DesktopCompanion\obj\Debug\PiClock_DesktopCompanion.g.resources
 C:\Users\Owner\Documents\GitHub\PiClock_DesktopCompanion\PiClock_DesktopCompanion\obj\Debug\PiClock_DesktopCompanion.Properties.Resources.resources
 C:\Users\Owner\Documents\GitHub\PiClock_DesktopCompanion\PiClock_DesktopCompanion\obj\Debug\PiClock_DesktopCompanion.csproj.GenerateResource.Cache
@@ -34,3 +32,7 @@ C:\Users\Owner\Documents\GitHub\PiClock_DesktopCompanion\PiClock_DesktopCompanio
 C:\Users\Owner\Documents\GitHub\PiClock_DesktopCompanion\PiClock_DesktopCompanion\obj\Debug\PiClock_DesktopCompanion.exe.manifest
 C:\Users\Owner\Documents\GitHub\PiClock_DesktopCompanion\PiClock_DesktopCompanion\obj\Debug\PiClock_DesktopCompanion.application
 C:\Users\Owner\Documents\GitHub\PiClock_DesktopCompanion\PiClock_DesktopCompanion\obj\Debug\PiClock_DesktopCompanion.csprojResolveAssemblyReference.cache
+C:\Users\Owner\Documents\GitHub\PiClock_DesktopCompanion\PiClock_DesktopCompanion\obj\Debug\Views\ConfigurationView.g.cs
+C:\Users\Owner\Documents\GitHub\PiClock_DesktopCompanion\PiClock_DesktopCompanion\obj\Debug\Views\ConfigurationView.baml
+C:\Users\Owner\Documents\GitHub\PiClock_DesktopCompanion\PiClock_DesktopCompanion\obj\Debug\Views\PinLoginView.g.cs
+C:\Users\Owner\Documents\GitHub\PiClock_DesktopCompanion\PiClock_DesktopCompanion\obj\Debug\Views\PinLoginView.baml

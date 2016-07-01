@@ -1,4 +1,5 @@
 ﻿<UserControl x:Class="PiClock_DesktopCompanion.Views.ConfigurationView"
+             x:Name="myConfigurationView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -103,14 +104,14 @@
                         HorizontalAlignment="Center" VerticalAlignment="Top"
                         Margin="0,0,0,0"  
                         Width="81" 
-                        Command="{Binding UpdateSettings}"
+                        Command="{Binding UpdateSettings}" CommandParameter="PinLoginView"
                         />
                 <Button x:Name="button_Cancel" 
                         Content="Cancel" 
                         HorizontalAlignment="Center" VerticalAlignment="Top"
                         Margin="0,10,0,0"  
                         Width="80" 
-                        Command="{Binding UpdateSettings}"
+                        Command="{Binding UpdateSettings}" CommandParameter="PinLoginView"
                         />
             </StackPanel>
         </StackPanel>

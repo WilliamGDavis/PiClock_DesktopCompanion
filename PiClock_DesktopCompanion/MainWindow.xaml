@@ -12,6 +12,7 @@
     
     <Window.Resources>
         <DataTemplate DataType="{x:Type m:PinLoginModel}"></DataTemplate>
+        <DataTemplate DataType="{x:Type m:EmployeeModel}"></DataTemplate>
     </Window.Resources>
 
     <Window.DataContext>

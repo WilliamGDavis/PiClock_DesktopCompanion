@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Owner\Documents\GitHub\PiClock_DesktopCompanion\PiClock_DesktopCompanion\App.xaml
-3-1377784168
+5338079910
 
-241999138994
-15767094614
-MainWindow.xaml;Views\ConfigurationView.xaml;Views\PinLoginView.xaml;
+321134208513
+671672107113
+MainWindow.xaml;Views\ConfigurationView.xaml;Views\EmployeePageView.xaml;Views\NotPunchedInView.xaml;Views\PinLoginView.xaml;
 
-True
+False
 

@@ -1,4 +1,5 @@
-﻿using PiClock_DesktopCompanion.Helpers;
+﻿using PiClock_DesktopCompanion.Classes;
+using PiClock_DesktopCompanion.Helpers;
 using PiClock_DesktopCompanion.Models;
 using PiClock_DesktopCompanion.Views;
 using System;
@@ -8,23 +9,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Net.Http;
 using System.Windows.Input;
 
 namespace PiClock_DesktopCompanion.ViewModels
 {
     class PinLoginViewModel : BaseViewModel
     {
-        #region Members
-        PinLoginModel _pinLoginModel;
-        string _pinError;
-        #endregion
-
         #region Constructors
         public PinLoginViewModel() { }
         #endregion
 
         #region Properties
-        protected PinLoginModel PinModel
+        private PinLoginModel _pinLoginModel;
+        private PinLoginModel PinLoginModel
         {
             get
             {
@@ -32,25 +30,22 @@ namespace PiClock_DesktopCompanion.ViewModels
                     _pinLoginModel = new PinLoginModel();
                 return _pinLoginModel;
             }
-            //set
-            //{
-            //    if (_pinLoginModel == null)
-            //        _pinLoginModel = new PinLoginModel();
-            //}
         }
 
         public string Pin
         {
-            get { return PinModel.Pin; }
+            get { return PinLoginModel.Pin; }
             set
             {
-                if (PinModel.Pin != value)
+                if (PinLoginModel.Pin != value)
                 {
-                    PinModel.Pin = value;
+                    PinLoginModel.Pin = value;
                     RaisePropertyChanged("Pin");
                 }
             }
         }
+
+        private string _pinError;
         public string PinError
         {
             get { return _pinError; }
@@ -62,7 +57,6 @@ namespace PiClock_DesktopCompanion.ViewModels
             }
         }
         #endregion
-
 
         #region Commands
         #region Commands - UpdatePinLogin
@@ -80,7 +74,7 @@ namespace PiClock_DesktopCompanion.ViewModels
 
         void UpdatePinLoginExecute(object param)
         {
-            Pin += param;
+            Pin += param.ToString();
             CheckPin();
         }
 
@@ -94,15 +88,15 @@ namespace PiClock_DesktopCompanion.ViewModels
             get
             {
                 if (_updateControl == null)
-                    _updateControl = new RelayCommand(param => UpdateControlExecute(), param => CanUpdateControlExecute());
+                    _updateControl = new RelayCommand(param => UpdateControlExecute(param), param => CanUpdateControlExecute());
 
                 return _updateControl;
             }
         }
 
-        void UpdateControlExecute()
+        void UpdateControlExecute(object param)
         {
-            PageSwitcher.Instance.CurrentView = PageSwitcher.Instance.ConfigurationView;
+            PageSwitcher.Instance.ChangeView(param);
         }
 
         bool CanUpdateControlExecute()
@@ -113,24 +107,60 @@ namespace PiClock_DesktopCompanion.ViewModels
         #endregion
 
         #region Methods
-        void CheckPin()
+        async void CheckPin()
         {
-            if (Pin.Length == 4)
+            //TODO: Check to see if a user is currently "parked" on another time clock (Basically, logged into more than one clock at a time)
+            if (Pin.Length == 4) //Hardcoded - Needs to be changed (returned from a db)
             {
-                if (Pin == "1111")
-                {
-                    PinError = "Logged In Successfully!";
-                    RaisePropertyChanged("PinError");
+                MasterModel.EmployeeModel = await Authentication.TryLogin(Pin);
 
+                if (MasterModel.EmployeeModel.Id == null)
+                {
+                    PinError = "Incorrect PIN";
+                    Pin = null;
+                    return;
+                }
+
+                Pin = null;
+
+                //Check to see if an employee is punched in
+                if (true == await CheckIfLoggedIn())
+                {
+                    MasterModel.EmployeeModel.CurrentJob = await GetCurrentJob();
+                    PageSwitcher.Instance.ChangeView("EmployeePageView");
                 }
                 else
                 {
-                    PinError = "Incorrect PIN";
-                    RaisePropertyChanged("PinError");
+                    PageSwitcher.Instance.ChangeView("NotPunchedInView");
                 }
-                Pin = null;
             }
+            PinError = null;
         }
-        #endregion - Methods
+
+        async Task<bool> CheckIfLoggedIn()
+        {
+            var paramDictionary = new Dictionary<string, string>()
+            {
+                { "action", "CheckLoginStatus" },
+                { "employeeId", MasterModel.EmployeeModel.Id }
+            };
+            var httpResponse = await CommonMethods.GetHttpResponseFromRpcServer(paramDictionary);
+            var httpContent = await httpResponse.Content.ReadAsStringAsync();
+            var isLoggedIn = (string)CommonMethods.Deserialize(typeof(string), httpContent);
+            return (isLoggedIn == "true") ? true : false;
+        }
+
+        async Task<JobModelUpdated> GetCurrentJob()
+        {
+            var paramDictionary = new Dictionary<string, string>()
+            {
+                { "action", "GetCurrentJob" },
+                { "employeeId", MasterModel.EmployeeModel.Id }
+            };
+            var httpResponse = await CommonMethods.GetHttpResponseFromRpcServer(paramDictionary);
+            var httpContent = await httpResponse.Content.ReadAsStringAsync();
+            return (JobModelUpdated)CommonMethods.Deserialize(typeof(JobModelUpdated), httpContent) ?? null;
+        }
     }
+    #endregion - Methods
 }

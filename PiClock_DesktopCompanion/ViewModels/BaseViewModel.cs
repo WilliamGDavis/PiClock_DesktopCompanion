@@ -1,4 +1,5 @@
 ﻿using PiClock_DesktopCompanion.Helpers;
+using PiClock_DesktopCompanion.Models;
 using System.ComponentModel;
 
 namespace PiClock_DesktopCompanion.ViewModels
@@ -11,9 +12,17 @@ namespace PiClock_DesktopCompanion.ViewModels
             get { return PageSwitcher.Instance; }
         }
 
+        public MasterModel MasterModel
+        {
+            get { return MasterModel.Instance; }
+        }
+
+
+
+        #region INotifyPropertyChanged
         #region INPC Members
         public event PropertyChangedEventHandler PropertyChanged;
-        #endregion
+        #endregion INPC Members
 
         #region INCP Methods
         public void RaisePropertyChanged(string propertyName)
@@ -23,6 +32,7 @@ namespace PiClock_DesktopCompanion.ViewModels
             if (handler != null)
                 handler(this, new PropertyChangedEventArgs(propertyName));
         }
-        #endregion
+        #endregion INPC Methods
+        #endregion INotifyPropertyChanged
     }
 }

@@ -5,7 +5,7 @@ using PiClock_DesktopCompanion.Helpers;
 
 namespace PiClock_DesktopCompanion.ViewModels
 {
-    class ConfigurationViewModel : INotifyPropertyChanged
+    class ConfigurationViewModel : BaseViewModel
     {
         #region Members
         string _apiServerAddress = Settings.Default.ApiServerAddress;
@@ -89,22 +89,6 @@ namespace PiClock_DesktopCompanion.ViewModels
         }
         #endregion
 
-        #region INotifyPropertyChanged
-        #region INPC Members
-        public event PropertyChangedEventHandler PropertyChanged;
-        #endregion
-
-        #region INPC Methods
-        private void RaisePropertyChanged(string propertyName)
-        {
-            //Use a handler to prevent threading issues
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-                handler(this, new PropertyChangedEventArgs(propertyName));
-        }
-        #endregion
-        #endregion
-
         #region Commands
         #region Command - UpdateSettings
         RelayCommand _updateSettingsCommand;
@@ -113,12 +97,12 @@ namespace PiClock_DesktopCompanion.ViewModels
             get
             {
                 if (_updateSettingsCommand == null)
-                    _updateSettingsCommand = new RelayCommand(param => UpdateSettingsExecute(), param => CanUpdateSettingsExecute());
+                    _updateSettingsCommand = new RelayCommand(param => UpdateSettingsExecute(param), param => CanUpdateSettingsExecute());
                 return _updateSettingsCommand;
             }
         }
 
-        void UpdateSettingsExecute()
+        void UpdateSettingsExecute(object param)
         {
             Settings.Default.ApiServerAddress = ApiServerAddress;
             Settings.Default.ApiServerPort = ApiServerPort;
@@ -129,28 +113,28 @@ namespace PiClock_DesktopCompanion.ViewModels
             Settings.Default.UseSsl = UseSsl;
             Settings.Default.Save();
             Settings.Default.Reload();
-            PageSwitcher.Instance.CurrentView = PageSwitcher.Instance.PinLoginView;
+            PageSwitcher.Instance.ChangeView(param);
         }
 
         bool CanUpdateSettingsExecute()
         { return true; }
         #endregion
-        #region UpdateControl
+        #region Command - UpdateControl
         RelayCommand _updateControl;
         public ICommand UpdateControl
         {
             get
             {
                 if (_updateControl == null)
-                    _updateControl = new RelayCommand(param => UpdateControlExecute(), param => CanUpdateControlExecute());
+                    _updateControl = new RelayCommand(param => UpdateControlExecute(param), param => CanUpdateControlExecute());
 
                 return _updateControl;
             }
         }
 
-        void UpdateControlExecute()
+        void UpdateControlExecute(object param)
         {
-            PageSwitcher.Instance.CurrentView = PageSwitcher.Instance.PinLoginView;
+            PageSwitcher.Instance.ChangeView(param);
         }
 
         bool CanUpdateControlExecute()

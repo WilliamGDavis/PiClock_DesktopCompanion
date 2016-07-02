@@ -8,7 +8,7 @@
         xmlns:vm="clr-namespace:PiClock_DesktopCompanion.ViewModels"
         xmlns:m="clr-namespace:PiClock_DesktopCompanion.Models"
         mc:Ignorable="d"
-        Title="PiClock Desktop Companion" Height="400" Width="280">
+        Title="PiClock Desktop Companion" Height="400" Width="280" ResizeMode="NoResize" Background="{x:Null}">
     
     <Window.Resources>
         <DataTemplate DataType="{x:Type m:PinLoginModel}"></DataTemplate>

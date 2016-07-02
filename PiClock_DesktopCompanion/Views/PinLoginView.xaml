@@ -7,7 +7,7 @@
              xmlns:v="clr-namespace:PiClock_DesktopCompanion.Views"
              xmlns:vm="clr-namespace:PiClock_DesktopCompanion.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="350" d:DesignWidth="260">
+             d:DesignHeight="350" d:DesignWidth="260" Background="White">
 
     <UserControl.DataContext>
         <vm:PinLoginViewModel />
@@ -21,7 +21,7 @@
                            Margin="0,20,0,0"
                            Text="Please Login"  
                            Height="22" Width="154" 
-                           TextAlignment="Center"
+                           TextAlignment="Center" FontFamily="Calibri Light" FontSize="16"
                            />
             </StackPanel>
             <StackPanel>
@@ -29,7 +29,7 @@
                            HorizontalAlignment="Center" VerticalAlignment="Top"
                            TextWrapping="Wrap" 
                            Height="34" Width="160" 
-                           TextAlignment="Center"
+                           TextAlignment="Center" FontFamily="Calibri Light" FontSize="16"
                            />
             </StackPanel>
             <StackPanel>
@@ -61,79 +61,80 @@
                             HorizontalAlignment="Center" VerticalAlignment="Center"
                             Width="60" Height="36" 
                             Command="{Binding UpdatePinLogin, Mode=OneWay}" CommandParameter="1" 
+                            Background="White" BorderBrush="{x:Null}" FontFamily="Calibri Light" FontSize="18.667" 
                             />
                     <Button x:Name="button_2" 
                             Grid.Column="1" Grid.Row="0"
                             Content="2" 
                             HorizontalAlignment="Center" VerticalAlignment="Center"
                             Width="60" Height="36" 
-                            Command="{Binding UpdatePinLogin, Mode=OneWay}" CommandParameter="2" 
+                            Command="{Binding UpdatePinLogin, Mode=OneWay}" CommandParameter="2" Background="White" BorderBrush="{x:Null}" FontFamily="Calibri Light" FontSize="18.667" 
                             />
                     <Button x:Name="button_3" 
                             Grid.Column="2" Grid.Row="0"
                             Content="3" 
                             HorizontalAlignment="Center" VerticalAlignment="Center"
                             Width="60" Height="36" 
-                            Command="{Binding UpdatePinLogin, Mode=OneWay}" CommandParameter="3" 
+                            Command="{Binding UpdatePinLogin, Mode=OneWay}" CommandParameter="3" Background="White" BorderBrush="{x:Null}" FontFamily="Calibri Light" FontSize="18.667" 
                             />
                     <Button x:Name="button_4"
                             Grid.Column="0" Grid.Row="1"
                             Content="4" 
                             HorizontalAlignment="Center" VerticalAlignment="Center" 
                             Width="60" Height="36" 
-                            Command="{Binding UpdatePinLogin, Mode=OneWay}" CommandParameter="4" 
+                            Command="{Binding UpdatePinLogin, Mode=OneWay}" CommandParameter="4" Background="White" BorderBrush="{x:Null}" FontFamily="Calibri Light" FontSize="18.667" 
                             />
                     <Button x:Name="button_5" 
                             Grid.Column="1" Grid.Row="1"
                             Content="5" 
                             HorizontalAlignment="Center" VerticalAlignment="Center" 
                             Width="60" Height="36" 
-                            Command="{Binding UpdatePinLogin, Mode=OneWay}"  CommandParameter="5"
+                            Command="{Binding UpdatePinLogin, Mode=OneWay}"  CommandParameter="5" Background="White" BorderBrush="{x:Null}" FontFamily="Calibri Light" FontSize="18.667"
                             />
                     <Button x:Name="button_6" 
                             Grid.Column="2" Grid.Row="1"
                             Content="6" 
                             HorizontalAlignment="Center" VerticalAlignment="Center" 
                             Width="60" Height="36" 
-                            Command="{Binding UpdatePinLogin, Mode=OneWay}" CommandParameter="6" 
+                            Command="{Binding UpdatePinLogin, Mode=OneWay}" CommandParameter="6" Background="White" BorderBrush="{x:Null}" FontFamily="Calibri Light" FontSize="18.667" 
                             />
                     <Button x:Name="button_7" 
                             Grid.Column="0" Grid.Row="2"
                             Content="7" 
                             HorizontalAlignment="Center" VerticalAlignment="Center" 
                             Width="60" Height="36" 
-                            Command="{Binding UpdatePinLogin, Mode=OneWay}" CommandParameter="7" 
+                            Command="{Binding UpdatePinLogin, Mode=OneWay}" CommandParameter="7" Background="White" BorderBrush="{x:Null}" FontFamily="Calibri Light" FontSize="18.667" 
                             />
                     <Button x:Name="button_8" 
                             Grid.Column="1" Grid.Row="2"
                             Content="8" 
                             HorizontalAlignment="Center" VerticalAlignment="Center" 
                             Width="60" Height="36" 
-                            Command="{Binding UpdatePinLogin, Mode=OneWay}" CommandParameter="8"
+                            Command="{Binding UpdatePinLogin, Mode=OneWay}" CommandParameter="8" Background="White" BorderBrush="{x:Null}" FontFamily="Calibri Light" FontSize="18.667"
                             />
                     <Button x:Name="button_9" 
                             Grid.Column="2" Grid.Row="2"
                             Content="9" 
                             HorizontalAlignment="Center" VerticalAlignment="Center" 
                             Width="60" Height="36" 
-                            Command="{Binding UpdatePinLogin, Mode=OneWay}" CommandParameter="9" 
+                            Command="{Binding UpdatePinLogin, Mode=OneWay}" CommandParameter="9" Background="White" BorderBrush="{x:Null}" FontFamily="Calibri Light" FontSize="18.667" 
                             />
                     <Button x:Name="button_0" 
                             Grid.Column="1" Grid.Row="3"
                             Content="0" 
                             HorizontalAlignment="Center" VerticalAlignment="Center" 
                             Width="60" Height="36" 
-                            Command="{Binding UpdatePinLogin, Mode=OneWay}" CommandParameter="0"
+                            Command="{Binding UpdatePinLogin, Mode=OneWay}" CommandParameter="0" Background="White" BorderBrush="{x:Null}" FontFamily="Calibri Light" FontSize="18.667"
                             />
                 </Grid>
             </StackPanel>
             <StackPanel>
                 <Button x:Name="button_Config"
-                        Content="Config"
+                        Content="Configuration"
                         HorizontalAlignment="Center" VerticalAlignment="Center"
-                        Height="36" Width="60"
+                        Height="36" Width="105"
                         Margin="0,20,0,0"
-                        Command="{Binding UpdateControl}" CommandParameter="ConfigurationView"
+                        Command="{Binding UpdateControl}" CommandParameter="ConfigurationView" Background="{x:Null}" BorderBrush="{x:Null}" FontFamily="Calibri Light" FontSize="16"
                         />
             </StackPanel>
         </StackPanel>

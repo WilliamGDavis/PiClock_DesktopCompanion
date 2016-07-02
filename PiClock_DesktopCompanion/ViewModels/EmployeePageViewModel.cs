@@ -36,16 +36,6 @@ namespace PiClock_DesktopCompanion.ViewModels
                 }
             }
         }
-
-        //public string CurrentJobNumber
-        //{
-        //    get
-        //    {
-        //        if (MasterModel.EmployeeModel.CurrentJob == null)
-        //            return "None";
-        //        return MasterModel.EmployeeModel.CurrentJob.Description;
-        //    }
-        //}
                 
         #region Commands - UpdateControl
         RelayCommand _updateControl;
@@ -89,6 +79,7 @@ namespace PiClock_DesktopCompanion.ViewModels
 
         void UpdateNewJobNumberExecute(object param)
         {
+            NewJobNumberError = null;
             NewJobNumber += param;
         }
 

@@ -8,7 +8,7 @@
              xmlns:v="clr-namespace:PiClock_DesktopCompanion.Views"
              xmlns:vm="clr-namespace:PiClock_DesktopCompanion.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="350" d:DesignWidth="260">
+             d:DesignHeight="350" d:DesignWidth="260" Background="White">
 
     <UserControl.DataContext>
         <vm:ConfigurationViewModel />
@@ -18,25 +18,25 @@
         <StackPanel>
             <Label x:Name="label" 
                Content="API Server Address" 
-               HorizontalAlignment="Left" VerticalAlignment="Top"
+               HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Calibri Light" FontSize="14.667"
                />
             <TextBox x:Name="textBox_ApiServerAddress" 
                  HorizontalAlignment="Center" VerticalAlignment="Bottom"
                  Height="23" Width="240"
                  TextWrapping="Wrap" 
-                 Text="{Binding ApiServerAddress, Mode=TwoWay}" 
+                 Text="{Binding ApiServerAddress, Mode=TwoWay}" FontFamily="Calibri Light" FontSize="16" 
                  />
         </StackPanel>
         <StackPanel>
             <Label x:Name="label_Copy" 
                    Content="API Directory" 
-                   HorizontalAlignment="Left" VerticalAlignment="Top"
+                   HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Calibri Light" FontSize="14.667"
                    />
             <TextBox x:Name="textBox_ApiDirectory" 
                      HorizontalAlignment="Center" VerticalAlignment="Top"
                      Height="23" Width="240"
                      TextWrapping="Wrap"
-                     Text="{Binding ApiDirectory, Mode=TwoWay}" 
+                     Text="{Binding ApiDirectory, Mode=TwoWay}" FontFamily="Calibri Light" FontSize="16" 
                      />
         </StackPanel>
         <StackPanel>
@@ -48,13 +48,13 @@
                 <StackPanel Grid.Column="0">
                     <Label x:Name="label_Copy1" 
                    Content="API Server Port" 
-                   HorizontalAlignment="Left" VerticalAlignment="Top" 
+                   HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Calibri Light" FontSize="14.667" 
                    />
                     <TextBox x:Name="textBox_ApiServerPort" 
                      HorizontalAlignment="Center" VerticalAlignment="Top"
                      Height="23" Width="108"
                      TextWrapping="Wrap"
-                     Text="{Binding ApiServerPort, Mode=TwoWay}" 
+                     Text="{Binding ApiServerPort, Mode=TwoWay}" FontFamily="Calibri Light" FontSize="16" 
                      />
                 </StackPanel>
                 <StackPanel Grid.Column="1">
@@ -62,32 +62,32 @@
                               Content="Use SSL" 
                               HorizontalAlignment="Center"
                               Margin="0,30,0,0"  
-                              IsChecked="{Binding CheckboxIsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              IsChecked="{Binding CheckboxIsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontFamily="Calibri Light" FontSize="14.667"
                               />
                 </StackPanel>
             </Grid>
             <StackPanel>
                 <Label x:Name="label_Copy2" 
                        Content="API Username" 
-                       HorizontalAlignment="Left" VerticalAlignment="Top"
+                       HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Calibri Light" FontSize="14.667"
                        />
                 <TextBox x:Name="textBox_ApiUsername" 
                              HorizontalAlignment="Center" VerticalAlignment="Top"
                              Height="23" Width="240"
                              TextWrapping="Wrap"
-                             Text="{Binding ApiUsername, Mode=TwoWay}" 
+                             Text="{Binding ApiUsername, Mode=TwoWay}" FontFamily="Calibri Light" FontSize="16" 
                              />
             </StackPanel>
             <StackPanel>
                 <Label x:Name="label_Copy3" 
                        Content="API Password" 
-                       HorizontalAlignment="Left" VerticalAlignment="Top"
+                       HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Calibri Light" FontSize="14.667"
                        />
                 <TextBox x:Name="passwordBox_ApiPassword" 
                          HorizontalAlignment="Center" VerticalAlignment="Top"
                          Height="23" Width="240"
                          TextWrapping="Wrap" 
-                         Text="{Binding ApiPassword, Mode=TwoWay}" 
+                         Text="{Binding ApiPassword, Mode=TwoWay}" FontFamily="Calibri Light" FontSize="16" 
                          />
             </StackPanel>
             <StackPanel>
@@ -99,20 +99,28 @@
                            />
             </StackPanel>
             <StackPanel>
-                <Button x:Name="button_SaveChanges" 
-                        Content="Save Settings" 
-                        HorizontalAlignment="Center" VerticalAlignment="Top"
-                        Margin="0,0,0,0"  
-                        Width="81" 
-                        Command="{Binding UpdateSettings}" CommandParameter="PinLoginView"
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="button_SaveChanges" 
+                            Grid.Column="1"
+                            Content="Save Settings" 
+                            HorizontalAlignment="Center" VerticalAlignment="Top"
+                            Width="106" Height="36"
+                            Command="{Binding UpdateSettings}" CommandParameter="PinLoginView" 
+                            Background="White" BorderThickness="0" FontFamily="Calibri Light" FontSize="16" 
                         />
-                <Button x:Name="button_Cancel" 
-                        Content="Cancel" 
-                        HorizontalAlignment="Center" VerticalAlignment="Top"
-                        Margin="0,10,0,0"  
-                        Width="80" 
-                        Command="{Binding UpdateSettings}" CommandParameter="PinLoginView"
+                    <Button x:Name="button_Cancel" 
+                            Grid.Column="0"
+                            Content="Cancel" 
+                            HorizontalAlignment="Center" VerticalAlignment="Top"
+                            Width="106" Height="36"
+                            Command="{Binding UpdateSettings}" CommandParameter="PinLoginView" 
+                            Background="White" BorderThickness="0" FontFamily="Calibri Light" FontSize="16"
                         />
+                </Grid>
             </StackPanel>
         </StackPanel>
     </StackPanel>

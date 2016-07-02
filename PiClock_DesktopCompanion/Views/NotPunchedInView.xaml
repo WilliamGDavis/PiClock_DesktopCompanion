@@ -13,17 +13,18 @@
         <vm:NotPunchedInViewModel />
     </UserControl.DataContext>
 
-    <DockPanel>
+    <DockPanel Background="White">
         <StackPanel VerticalAlignment="Center">
             <StackPanel>
-                <Label x:Name="label" Content="Please punch in before using this application" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top"/>
+                <TextBlock x:Name="label" Text="Please punch in before using this application" TextWrapping="Wrap" TextAlignment="Center"
+                           HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top" FontFamily="Calibri Light" FontSize="16" Height="63"/>
             </StackPanel>
             <StackPanel>
                 <Button x:Name="button" 
                         Content="Back" 
                         HorizontalAlignment="Center" VerticalAlignment="Top" 
-                        Width="75"
-                        Command="{Binding GoBack, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" CommandParameter="PinLoginView"
+                        Width="107" Height="36"
+                        Command="{Binding GoBack, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" CommandParameter="PinLoginView" Background="White" BorderBrush="{x:Null}" BorderThickness="0" FontFamily="Calibri Light" FontSize="16"
                         />
             </StackPanel>
         </StackPanel>

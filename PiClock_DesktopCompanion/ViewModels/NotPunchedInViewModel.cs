@@ -10,7 +10,8 @@ namespace PiClock_DesktopCompanion.ViewModels
 {
     class NotPunchedInViewModel : BaseViewModel
     {
-        #region Commands - GoBack
+        #region ICommand
+        #region ICommand {GoBack}
         RelayCommand _goback;
         public ICommand GoBack
         {
@@ -18,20 +19,16 @@ namespace PiClock_DesktopCompanion.ViewModels
             {
                 if (_goback == null)
                     _goback = new RelayCommand(param => GoBackExecute(param), param => CanGoBackExecute());
-
                 return _goback;
             }
         }
 
         void GoBackExecute(object param)
-        {
-            PageSwitcher.Instance.ChangeView(param);
-        }
+        { PageSwitcher.Instance.ChangeView(param); }
 
         bool CanGoBackExecute()
-        {
-            return true;
-        }
-        #endregion - ChangeJob
+        { return true; }
+        #endregion ICommand {GoBack}
+        #endregion ICommand
     }
 }

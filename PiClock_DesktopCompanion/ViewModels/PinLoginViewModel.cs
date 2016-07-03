@@ -150,7 +150,7 @@ namespace PiClock_DesktopCompanion.ViewModels
             return (isLoggedIn == "true") ? true : false;
         }
 
-        async Task<JobModelUpdated> GetCurrentJob()
+        async Task<JobModel> GetCurrentJob()
         {
             var paramDictionary = new Dictionary<string, string>()
             {
@@ -159,7 +159,7 @@ namespace PiClock_DesktopCompanion.ViewModels
             };
             var httpResponse = await CommonMethods.GetHttpResponseFromRpcServer(paramDictionary);
             var httpContent = await httpResponse.Content.ReadAsStringAsync();
-            return (JobModelUpdated)CommonMethods.Deserialize(typeof(JobModelUpdated), httpContent) ?? null;
+            return (JobModel)CommonMethods.Deserialize(typeof(JobModel), httpContent) ?? null;
         }
     }
     #endregion - Methods

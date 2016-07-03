@@ -9,6 +9,7 @@ namespace PiClock_DesktopCompanion.ViewModels
 {
     class EmployeePageViewModel : BaseViewModel
     {
+        #region Properties and Members
         private string _newJobNumber;
         public string NewJobNumber
         {
@@ -36,8 +37,10 @@ namespace PiClock_DesktopCompanion.ViewModels
                 }
             }
         }
-                
-        #region Commands - UpdateControl
+        #endregion Properties and Members
+
+        #region ICommand
+        #region ICommand {UpdateControl}
         RelayCommand _updateControl;
         public ICommand UpdateControl
         {
@@ -45,7 +48,6 @@ namespace PiClock_DesktopCompanion.ViewModels
             {
                 if (_updateControl == null)
                     _updateControl = new RelayCommand(param => UpdateControlExecute(param), param => CanUpdateControlExecute());
-
                 return _updateControl;
             }
         }
@@ -59,12 +61,10 @@ namespace PiClock_DesktopCompanion.ViewModels
         }
 
         bool CanUpdateControlExecute()
-        {
-            return true;
-        }
-        #endregion - UpdateControl
+        { return true; }
+        #endregion ICommand {UpdateControl}
 
-        #region Commands - UpdateNewJobNumber
+        #region ICommand {UpdateNewJobNumber}
         RelayCommand _updateNewJobNumber;
         public ICommand UpdateNewJobNumber
         {
@@ -72,7 +72,6 @@ namespace PiClock_DesktopCompanion.ViewModels
             {
                 if (_updateNewJobNumber == null)
                     _updateNewJobNumber = new RelayCommand(param => UpdateNewJobNumberExecute(param), param => CanUpdateNewJobNumberExecute());
-
                 return _updateNewJobNumber;
             }
         }
@@ -84,12 +83,10 @@ namespace PiClock_DesktopCompanion.ViewModels
         }
 
         bool CanUpdateNewJobNumberExecute()
-        {
-            return true;
-        }
-        #endregion - UpdateNewJobNumber
+        { return true; }
+        #endregion ICommand {UpdateNewJobNumber}
 
-        #region Commands - ChangeJob
+        #region ICommand {ChangeJob}
         RelayCommand _changeJob;
         public ICommand ChangeJob
         {
@@ -97,14 +94,68 @@ namespace PiClock_DesktopCompanion.ViewModels
             {
                 if (_changeJob == null)
                     _changeJob = new RelayCommand(param => ChangeJobExecute(param), param => CanChangeJobExecute());
-
                 return _changeJob;
             }
         }
 
+        bool CanChangeJobExecute()
+        { return true; }
+        #endregion ICommand {ChangeJob}
+
+        #region ICommand {ClearNewJobNumber}
+        RelayCommand _clearNewJobNumber;
+        public ICommand ClearNewJobNumber
+        {
+            get
+            {
+                if (_clearNewJobNumber == null)
+                    _clearNewJobNumber = new RelayCommand(param => ClearNewJobNumberExecute(), param => CanNewJobNumberExecute());
+
+                return _clearNewJobNumber;
+            }
+        }
+
+        void ClearNewJobNumberExecute()
+        {
+            NewJobNumber = null;
+        }
+
+        bool CanNewJobNumberExecute()
+        {
+            return true;
+        }
+        #endregion ICommand {ClearJobNumber}
+        #endregion ICommand
+
+        #region Methods
+        public async Task<string> JobLookup()
+        {
+            var paramDictionary = new Dictionary<string, string>()
+            {
+                {"action", "GetJobIdByJobDescription" },
+                {"jobDescription", NewJobNumber }
+            };
+            var httpResponse = await CommonMethods.GetHttpResponseFromRpcServer(paramDictionary);
+            var httpContent = await httpResponse.Content.ReadAsStringAsync();
+
+            return (string)CommonMethods.Deserialize(typeof(string), httpContent);
+        }
+
+        public async Task PunchIntoJob(string newJobId)
+        {
+            string currentJobId = (null != MasterModel.EmployeeModel.CurrentJob) ? MasterModel.EmployeeModel.CurrentJob.Id.ToString() : "null";
+            var paramDictionary = new Dictionary<string, string>()
+            {
+                { "action", "PunchIntoJob" },
+                { "employeeId", MasterModel.EmployeeModel.Id },
+                { "currentJobId",  currentJobId },
+                { "newJobId", newJobId }
+            };
+            await CommonMethods.GetHttpResponseFromRpcServer(paramDictionary);
+        }
+
         async void ChangeJobExecute(object param)
         {
-            //TODO: check for null value
             string oldJob = (MasterModel.EmployeeModel.CurrentJob == null) ? null : MasterModel.EmployeeModel.CurrentJob.Description;
 
             if (NewJobNumber == oldJob)
@@ -134,63 +185,6 @@ namespace PiClock_DesktopCompanion.ViewModels
             NewJobNumber = null;
             NewJobNumberError = null;
             PageSwitcher.Instance.ChangeView(param);
-        }
-
-        bool CanChangeJobExecute()
-        {
-            return true;
-        }
-        #endregion - ChangeJob
-
-        #region Commands - ClearNewJobNumber
-        RelayCommand _clearNewJobNumber;
-        public ICommand ClearNewJobNumber
-        {
-            get
-            {
-                if (_clearNewJobNumber == null)
-                    _clearNewJobNumber = new RelayCommand(param => ClearNewJobNumberExecute(), param => CanNewJobNumberExecute());
-
-                return _clearNewJobNumber;
-            }
-        }
-
-        void ClearNewJobNumberExecute()
-        {
-            NewJobNumber = null;
-        }
-
-        bool CanNewJobNumberExecute()
-        {
-            return true;
-        }
-        #endregion - ClearNewJobNumber
-
-        #region Methods
-        public async Task<string> JobLookup()
-        {
-            var paramDictionary = new Dictionary<string, string>()
-            {
-                {"action", "GetJobIdByJobDescription" },
-                {"jobDescription", NewJobNumber }
-            };
-            var httpResponse = await CommonMethods.GetHttpResponseFromRpcServer(paramDictionary);
-            var httpContent = await httpResponse.Content.ReadAsStringAsync();
-
-            return (string)CommonMethods.Deserialize(typeof(string), httpContent);
-        }
-
-        public async Task PunchIntoJob(string newJobId)
-        {
-            string currentJobId = (null != MasterModel.EmployeeModel.CurrentJob) ? MasterModel.EmployeeModel.CurrentJob.Id.ToString() : "null";
-            var paramDictionary = new Dictionary<string, string>()
-            {
-                { "action", "PunchIntoJob" },
-                { "employeeId", MasterModel.EmployeeModel.Id },
-                { "currentJobId",  currentJobId },
-                { "newJobId", newJobId }
-            };
-            await CommonMethods.GetHttpResponseFromRpcServer(paramDictionary);
         }
         #endregion
     }

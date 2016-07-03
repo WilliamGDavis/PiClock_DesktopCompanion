@@ -1,13 +1,8 @@
-﻿using PiClock_DesktopCompanion.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PiClock_DesktopCompanion.Classes;
 
 namespace PiClock_DesktopCompanion.Models
 {
-    class MasterModel : BaseViewModel
+    class MasterModel : BaseClass
     {
         #region Singleton
         private static volatile MasterModel _instance;
@@ -30,6 +25,7 @@ namespace PiClock_DesktopCompanion.Models
         }
         #endregion Singleton
 
+        #region Properties and Members
         private EmployeeModel _employeeModel;
         public EmployeeModel EmployeeModel
         {
@@ -48,6 +44,26 @@ namespace PiClock_DesktopCompanion.Models
                 }
             }
         }
-        
+
+        private ConfigurationModel _configurationModel;
+        public ConfigurationModel ConfigurationModel
+        {
+            get
+            {
+                if (_configurationModel == null)
+                    _configurationModel = new ConfigurationModel();
+                return _configurationModel;
+            }
+            set
+            {
+                if (_configurationModel != value)
+                {
+                    _configurationModel = value;
+                    RaisePropertyChanged("ConfigurationModel");
+                }
+            }
+        }
+        #endregion Properties and Members
+
     }
 }

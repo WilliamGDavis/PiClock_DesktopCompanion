@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
+﻿using PiClock_DesktopCompanion.Classes;
+using System.Collections.Generic;
 
 namespace PiClock_DesktopCompanion.Models
 {
-    class EmployeeModel : INotifyPropertyChanged
+    class EmployeeModel : BaseClass
     {
+        #region Properties and Members
         private string _id;
         public string Id
         {
@@ -65,8 +66,8 @@ namespace PiClock_DesktopCompanion.Models
             }
         }
 
-        private JobModelUpdated _currentJob;
-        public JobModelUpdated CurrentJob
+        private JobModel _currentJob;
+        public JobModel CurrentJob
         {
             get { return _currentJob; }
             set
@@ -74,12 +75,11 @@ namespace PiClock_DesktopCompanion.Models
                 if (_currentJob != value)
                     _currentJob = value;
                 RaisePropertyChanged("CurrentJob");
-                RaisePropertyChanged("EmployeeModel");
             }
         }
 
-        private List<JobModelUpdated> _jobList;
-        public List<JobModelUpdated> JobList
+        private List<JobModel> _jobList;
+        public List<JobModel> JobList
         {
             get { return _jobList; }
             set
@@ -89,21 +89,6 @@ namespace PiClock_DesktopCompanion.Models
                 RaisePropertyChanged("JobList");
             }
         }
-
-        #region INotifyPropertyChanged
-        #region INPC Members
-        public event PropertyChangedEventHandler PropertyChanged;
-        #endregion INPC Members
-
-        #region INCP Methods
-        public void RaisePropertyChanged(string propertyName)
-        {
-            //Use a handler to prevent threading issues
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-                handler(this, new PropertyChangedEventArgs(propertyName));
-        }
-        #endregion INPC Methods
-        #endregion INotifyPropertyChanged
+        #endregion Properties and Members
     }
 }

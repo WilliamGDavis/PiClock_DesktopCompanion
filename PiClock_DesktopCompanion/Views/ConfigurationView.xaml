@@ -24,7 +24,7 @@
                  HorizontalAlignment="Center" VerticalAlignment="Bottom"
                  Height="23" Width="240"
                  TextWrapping="Wrap" 
-                 Text="{Binding ApiServerAddress, Mode=TwoWay}" FontFamily="Calibri Light" FontSize="16" 
+                 Text="{Binding MasterModel.ConfigurationModel.ApiServerAddress, Mode=TwoWay}" FontFamily="Calibri Light" FontSize="16" 
                  />
         </StackPanel>
         <StackPanel>
@@ -36,7 +36,7 @@
                      HorizontalAlignment="Center" VerticalAlignment="Top"
                      Height="23" Width="240"
                      TextWrapping="Wrap"
-                     Text="{Binding ApiDirectory, Mode=TwoWay}" FontFamily="Calibri Light" FontSize="16" 
+                     Text="{Binding MasterModel.ConfigurationModel.ApiDirectory, Mode=TwoWay}" FontFamily="Calibri Light" FontSize="16" 
                      />
         </StackPanel>
         <StackPanel>
@@ -54,7 +54,8 @@
                      HorizontalAlignment="Center" VerticalAlignment="Top"
                      Height="23" Width="108"
                      TextWrapping="Wrap"
-                     Text="{Binding ApiServerPort, Mode=TwoWay}" FontFamily="Calibri Light" FontSize="16" 
+                     Text="{Binding MasterModel.ConfigurationModel.ApiServerPort, Mode=TwoWay}" 
+                             FontFamily="Calibri Light" FontSize="16" 
                      />
                 </StackPanel>
                 <StackPanel Grid.Column="1">
@@ -62,7 +63,8 @@
                               Content="Use SSL" 
                               HorizontalAlignment="Center"
                               Margin="0,30,0,0"  
-                              IsChecked="{Binding CheckboxIsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontFamily="Calibri Light" FontSize="14.667"
+                              IsChecked="{Binding MasterModel.ConfigurationModel.CheckboxIsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                              FontFamily="Calibri Light" FontSize="14.667"
                               />
                 </StackPanel>
             </Grid>
@@ -75,7 +77,7 @@
                              HorizontalAlignment="Center" VerticalAlignment="Top"
                              Height="23" Width="240"
                              TextWrapping="Wrap"
-                             Text="{Binding ApiUsername, Mode=TwoWay}" FontFamily="Calibri Light" FontSize="16" 
+                             Text="{Binding MasterModel.ConfigurationModel.ApiUsername, Mode=TwoWay}" FontFamily="Calibri Light" FontSize="16" 
                              />
             </StackPanel>
             <StackPanel>
@@ -87,7 +89,8 @@
                          HorizontalAlignment="Center" VerticalAlignment="Top"
                          Height="23" Width="240"
                          TextWrapping="Wrap" 
-                         Text="{Binding ApiPassword, Mode=TwoWay}" FontFamily="Calibri Light" FontSize="16" 
+                         Text="{Binding MasterModel.ConfigurationModel.ApiPassword, Mode=TwoWay}" 
+                         FontFamily="Calibri Light" FontSize="16" 
                          />
             </StackPanel>
             <StackPanel>

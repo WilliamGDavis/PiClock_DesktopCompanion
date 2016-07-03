@@ -89,18 +89,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AppSettings.cs" />
-    <Compile Include="AppSettings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>AppSettings.settings</DependentUpon>
-    </Compile>
     <Compile Include="Classes\Authentication.cs" />
+    <Compile Include="Classes\BaseClass.cs" />
     <Compile Include="Classes\CommonMethods.cs" />
     <Compile Include="Classes\WebServiceCall.cs" />
     <Compile Include="Helpers\CloseOnClickBehavior.cs" />
     <Compile Include="Helpers\PageSwitcher.cs" />
     <Compile Include="Helpers\RelayCommand.cs" />
+    <Compile Include="Models\ConfigurationModel.cs" />
     <Compile Include="Models\EmployeeModel.cs" />
     <Compile Include="Models\JobModel.cs" />
     <Compile Include="Models\MasterModel.cs" />
@@ -171,11 +167,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="AppSettings.settings">
-      <Generator>PublicSettingsSingleFileGenerator</Generator>
-      <LastGenOutput>AppSettings.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="ClassDiagram1.cd" />
     <None Include="PiClock_DesktopCompanion_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
